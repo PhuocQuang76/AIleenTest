@@ -13,5 +13,5 @@ CMD ["mysqld", "--default-authentication-plugin=mysql_native_password", "--port=
   # Expose MySQL port
 EXPOSE 3309
   
-  # Persist data in a volume
+  # Persist data in a volume addd comment----------
 VOLUME /var/lib/mysql
