@@ -1,0 +1,80 @@
+Spring boot
+        In this project, data is given regarding various events,
+        including their name, location, duration, and cost.
+         Your task is to implement several REST endpoints to handle this data.
+        Here is an example of an event data JSON object:
+
+        {id : 1, name: soft summit, Lia cation : city, duration: 8, cost: 30}
+
+GET /event/total?by=(by):
+* Return the total value summed by the given field and status code 200.
+
+ID and status code 200.
+* If the requested event entry doesn't exist, then status code 404 should be returned.
+ ----------
+dockerfile
+# Use the official MySQL 8.0 image
+        FROM mysql:8.0
+
+        # Set root password and create a database
+        ENV MYSQL_ROOT_PASSWORD=root
+        ENV MYSQL_DATABASE=event
+        ENV MYSQL_USER=root
+
+        # Use the native password plugin for better compatibility
+        CMD ["--default-authentication-plugin=mysql_native_password"]
+
+        # Expose MySQL port
+        EXPOSE 3309
+
+        # Persist data in a volume
+        VOLUME /var/lib/mysql
+
+How to use:
+    + Build the image:
+        docker build -t mysql-event-db .
+
+    + Run the container:
+         docker run -d --name mysql-event -p 3309:3306 -e MYSQL_ROOT_PASSWORD=root mysql:8.0
+
+    + Connect to MySQL:
+        docker exec -it mysql-event mysql -u root -proot
+
+        OR
+             mysql -u root -p
+             root
+             show databases;
+             use database name;
+             show tables;
+
+
+
+http://localhost:8082/event/create
+   {
+       "name": "Tech Conference 2023",
+       "location": "Convention Center",
+       "duration": 8,
+       "cost": 15.00
+   }
+
+    {
+        "name": "Spring Boot Workshop",
+        "location": "Virtual",
+        "duration": 4,
+        "cost": 10.00
+    }
+
+    {
+        "name": "Global Hackathon",
+        "location": "Online",
+        "duration": 48,
+        "cost": 5.00
+    }
+
+
+    {
+        "name": "Developer Meetup",
+        "location": "Downtown Hub",
+        "duration": 3,
+        "cost": 25.00
+    }
