@@ -37,6 +37,16 @@ public class EventController {
         }
     }
 
+    @GetMapping("/totalByComlumn")
+    public ResponseEntity<Map<String, Double>> getTotalByComlumn(@RequestParam String column) {
+        Map<String, Double> eventList = eventService.getTotal(column);
+        if (eventList.size() == 0) {
+            return ResponseEntity.status(404).body(null);
+        }else{
+            return ResponseEntity.status(200).body(eventList);
+        }
+    }
+
     @DeleteMapping("/delete/{id}")
     public ResponseEntity<Event> deleteEvent(@PathVariable Long id) {
         Event event = eventService.deleteEvent(id);
